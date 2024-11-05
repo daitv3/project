@@ -32,17 +32,26 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
         return res.status(400).send(`image url is required`);
       }
 
-      const filteredpath = await filterImageFromURL(image_url);
-
-      if(!filteredpath){
-        return res.status(400).send(`filter Image fail`);
-      }
-
-      res.status(200).sendFile(filteredpath, () => {
-        let files = [];
-        files.push(filteredpath);
-        deleteLocalFiles(files);
-      });
+      try {
+        const filteredpath = await filterImageFromURL(image_url);
+        if(filteredpath) {
+            console.log('filtered Image success')
+ 
+            res.status(200).sendFile(filteredpath, () => {
+                // Delete the filtered image file after sending the response
+                let files = [];
+                files.push(filteredpath);
+                deleteLocalFiles(files)
+            });
+ 
+        }else {
+            console.error('filtered Image failed', req)
+            res.status(500).send('filtered Image failed')
+        }
+    } catch (error) {
+        console.error('Error filtering image:', error);
+        res.status(500).send('An error occurred while filtering the image');
+    }
       
       
   });
