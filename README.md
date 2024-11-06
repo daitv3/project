@@ -7,4 +7,4 @@ curl http://localhost:8082/filteredimage?image_url=https://upload.wikimedia.org/
 refer folder screenshot: ImageFilterServiceElasticBeanStalk.png
 
 # link to the endpoint URL for a running elastic beanstalk deployment
-curl http://imagefilterservice-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://images.pexels.com/photos/4388290/pexels-photo-4388290.jpeg
+curl http://filterimageservice-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg
